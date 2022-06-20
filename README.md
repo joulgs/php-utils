@@ -7,7 +7,7 @@
 - Using Composer
 
 ```bash
-composer install jgs-php-utils
+composer require joulgs/php-utils
 ```
 
 ---
