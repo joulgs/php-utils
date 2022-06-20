@@ -2,6 +2,19 @@
     "name":"joulgs/php-utils",
     "description":"PHP validation and formatting tools",
     "type":"library",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "validation",
+        "formatting",
+        "CPF",
+        "CNPJ",
+        "NIS"
+    ],
+    "homepage":"https://github.com/joulgs/php-utils",
+    "repository":"https://github.com/joulgs/php-utils",
+    "bugs":"https://github.com/joulgs/php-utils/issues",
+    "version":"0.0.1",
     "authors": [
         {
             "name": "Jonathas Soares",
