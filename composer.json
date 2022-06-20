@@ -1,0 +1,19 @@
+{
+    "name":"joulgs/php-utils",
+    "description":"PHP validation and formatting tools",
+    "type":"library",
+    "authors": [
+        {
+            "name": "Jonathas Soares",
+            "email": "joul.gs@gmail.com"
+            }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JGS\\Utils\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0"
+    }
+}
