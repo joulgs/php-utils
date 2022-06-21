@@ -9,7 +9,7 @@
         "formatting",
         "CPF",
         "CNPJ",
-        "NIS"
+        "NIF"
     ],
     "homepage":"https://github.com/joulgs/php-utils",
     "repository":"https://github.com/joulgs/php-utils",

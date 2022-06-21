@@ -6,8 +6,9 @@ class FiscalDocuments
 {
     public $doc_number;
     public $type;
-    public const DOC_TYPE_NIF_POR = 'NIF_PORT';
-    public const DOC_TYPE_NIF_ANG = 'NIF_ANG';
+    public const DOC_TYPE_NIF_POR = 'NIF';
+    // removido pos não tem uma forma sempre correta de ser validado: https://github.com/assoft-portugal/SAF-T-AO/discussions/132
+    // public const DOC_TYPE_NIF_ANG = 'NIF_ANG'; 
     public const DOC_TYPE_CPF = 'CPF';
     public const DOC_TYPE_CNPJ = 'CNPJ';
 
@@ -22,8 +23,8 @@ class FiscalDocuments
         {
             case 9:
                 return self::DOC_TYPE_NIF_POR;
-            case 10:
-                return self::DOC_TYPE_NIF_ANG;
+            // case 10:
+            //     return self::DOC_TYPE_NIF_ANG;
             case 11:
                 return self::DOC_TYPE_CPF;
             case 14:
@@ -43,8 +44,8 @@ class FiscalDocuments
         {
             case self::DOC_TYPE_NIF_POR:
                 return $this->validateNIF();
-            case self::DOC_TYPE_NIF_ANG:
-                return $this->validateNIFAng();
+            // case self::DOC_TYPE_NIF_ANG:
+            //     return $this->validateNIFAng();
             case self::DOC_TYPE_CPF:
                 return $this->validateCPF();
             case self::DOC_TYPE_CNPJ:
