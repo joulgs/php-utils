@@ -14,12 +14,12 @@
     "homepage":"https://github.com/joulgs/php-utils",
     "repository":"https://github.com/joulgs/php-utils",
     "bugs":"https://github.com/joulgs/php-utils/issues",
-    "version":"0.0.1",
+    "version":"1.0.0",
     "authors": [
         {
             "name": "Jonathas Soares",
             "email": "joul.gs@gmail.com"
-            }
+        }
     ],
     "autoload": {
         "psr-4": {
