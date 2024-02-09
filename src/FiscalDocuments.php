@@ -14,17 +14,16 @@ class FiscalDocuments
 
     public function __construct($number)
     {
-        $this->doc_number = preg_replace('/\D/' , '', trim($number));
+        $this->doc_number = preg_replace('/\D/', '', trim($number));
     }
 
     public function getType()
     {
-        switch(strlen($this->doc_number))
-        {
+        switch (strlen($this->doc_number)) {
             case 9:
                 return self::DOC_TYPE_NIF_POR;
-            // case 10:
-            //     return self::DOC_TYPE_NIF_ANG;
+                // case 10:
+                //     return self::DOC_TYPE_NIF_ANG;
             case 11:
                 return self::DOC_TYPE_CPF;
             case 14:
@@ -37,15 +36,14 @@ class FiscalDocuments
     public function isValid()
     {
         $type = $this->getType();
-        if( ! $type)
+        if (!$type)
             return false;
-        
-        switch($type)
-        {
+
+        switch ($type) {
             case self::DOC_TYPE_NIF_POR:
                 return $this->validateNIF();
-            // case self::DOC_TYPE_NIF_ANG:
-            //     return $this->validateNIFAng();
+                // case self::DOC_TYPE_NIF_ANG:
+                //     return $this->validateNIFAng();
             case self::DOC_TYPE_CPF:
                 return $this->validateCPF();
             case self::DOC_TYPE_CNPJ:
@@ -55,7 +53,7 @@ class FiscalDocuments
 
     public function isInvalid()
     {
-        return ! $this->isValid();
+        return !$this->isValid();
     }
 
     private function validateNIFAng()
@@ -66,17 +64,15 @@ class FiscalDocuments
 
         $nif_primeiros_digito = array(1, 2, 3, 5, 6, 7, 8, 9);
 
-        if (is_numeric($nif) && strlen($nif) == 10 && in_array($nif_split[0], $nif_primeiros_digito))
-        {
+        if (is_numeric($nif) && strlen($nif) == 10 && in_array($nif_split[0], $nif_primeiros_digito)) {
             $check_digit = 0;
-            for ($i = 0; $i < 9; $i++)
-            {
+            for ($i = 0; $i < 9; $i++) {
                 $check_digit += $nif_split[$i] * (11 - $i - 1);
             }
-            
+
             $check_digit = 12 - ($check_digit % 12);
             $check_digit = $check_digit >= 11 ? 0 : $check_digit;
-            
+
             if ($check_digit == $nif_split[9])
                 return true;
         }
@@ -90,17 +86,15 @@ class FiscalDocuments
         $nif_split = str_split($nif);
         $nif_primeiros_digito = array(1, 2, 3, 5, 6, 7, 8, 9);
 
-        if (is_numeric($nif) && strlen($nif) == 9 && in_array($nif_split[0], $nif_primeiros_digito))
-        {
+        if (is_numeric($nif) && strlen($nif) == 9 && in_array($nif_split[0], $nif_primeiros_digito)) {
             $check_digit = 0;
-            for ($i = 0; $i < 8; $i++)
-            {
+            for ($i = 0; $i < 8; $i++) {
                 $check_digit += $nif_split[$i] * (10 - $i - 1);
             }
-            
+
             $check_digit = 11 - ($check_digit % 11);
             $check_digit = $check_digit >= 10 ? 0 : $check_digit;
-            
+
             if ($check_digit == $nif_split[8])
                 return true;
         }
@@ -115,10 +109,8 @@ class FiscalDocuments
         if (preg_match('/(\d)\1{10}/', $cpf))
             return false;
 
-        for ($t = 9; $t < 11; $t++)
-        {
-            for ($d = 0, $c = 0; $c < $t; $c++)
-            {
+        for ($t = 9; $t < 11; $t++) {
+            for ($d = 0, $c = 0; $c < $t; $c++) {
                 $d += $cpf[$c] * (($t + 1) - $c);
             }
             $d = ((10 * $d) % 11) % 10;
@@ -147,7 +139,7 @@ class FiscalDocuments
 
         if ($cnpj[13] != ((($n %= 11) < 2) ? 0 : 11 - $n))
             return false;
-        
+
         return true;
     }
 }
