@@ -33,6 +33,7 @@
         "phpunit/phpunit": "^10.5"
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "coverage": "phpunit --coverage-html ./src/Tests/Coverage"
     }
 }
