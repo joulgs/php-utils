@@ -222,4 +222,83 @@ class FiscalDocumentsTest extends TestCase
 
         $this->assertEquals(FiscalDocuments::DOC_TYPE_NIF_POR, $nif_formatted->getType());
     }
+
+    // public function testShouldReturnFalseWhenIsInvalidStringCPF()
+    // {
+    //     $invalid_type = new FiscalDocuments('12345678900');
+
+    //     $this->assertFalse($invalid_type->getType());
+    // }
+
+    public function testShouldReturnFalseWhenIsALargeSizeString()
+    {
+        $large_size_string = new FiscalDocuments('123456789091');
+
+        $this->assertFalse($large_size_string->isValid());
+        $this->assertTrue($large_size_string->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsALargeSizeInteger()
+    {
+        $large_size_int = new FiscalDocuments(123456789091);
+
+        $this->assertFalse($large_size_int->isValid());
+        $this->assertTrue($large_size_int->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsALargeSizeFormatted()
+    {
+        $large_size_formatted = new FiscalDocuments('123.456.789-091');
+
+        $this->assertFalse($large_size_formatted->isValid());
+        $this->assertTrue($large_size_formatted->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsASmallSizeString()
+    {
+        $small_size_string = new FiscalDocuments('12345678');
+
+        $this->assertFalse($small_size_string->isValid());
+        $this->assertTrue($small_size_string->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsASmallSizeInteger()
+    {
+        $small_size_int = new FiscalDocuments(12345678);
+
+        $this->assertFalse($small_size_int->isValid());
+        $this->assertTrue($small_size_int->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsASmallSizeFormatted()
+    {
+        $small_size_formatted = new FiscalDocuments('123.456.78');
+
+        $this->assertFalse($small_size_formatted->isValid());
+        $this->assertTrue($small_size_formatted->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsANullString()
+    {
+        $null_string = new FiscalDocuments('');
+
+        $this->assertFalse($null_string->isValid());
+        $this->assertTrue($null_string->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsANullInteger()
+    {
+        $null_int = new FiscalDocuments(0);
+
+        $this->assertFalse($null_int->isValid());
+        $this->assertTrue($null_int->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsANullFormatted()
+    {
+        $null_formatted = new FiscalDocuments('0');
+
+        $this->assertFalse($null_formatted->isValid());
+        $this->assertTrue($null_formatted->isInvalid());
+    }
 }
