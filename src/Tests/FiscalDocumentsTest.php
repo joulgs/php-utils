@@ -394,4 +394,12 @@ class FiscalDocumentsTest extends TestCase
         $this->assertFalse($invalid_formatted->isValid());
         $this->assertTrue($invalid_formatted->isInvalid());
     }
+
+    public function testShouldReturnFalseWhenIsAnValidFistValidateNumberButNotTheSecond()
+    {
+        $invalid_string = new FiscalDocuments('27579093000192');
+
+        $this->assertFalse($invalid_string->isValid());
+        $this->assertTrue($invalid_string->isInvalid());
+    }
 }
