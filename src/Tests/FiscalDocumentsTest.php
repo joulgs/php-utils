@@ -322,4 +322,76 @@ class FiscalDocumentsTest extends TestCase
 
         $this->assertFalse($invalid_formatted->getType());
     }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberCNPJString()
+    {
+        $invalid_string = new FiscalDocuments('00000000000000');
+
+        $this->assertFalse($invalid_string->isValid());
+        $this->assertTrue($invalid_string->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberCNPJInteger()
+    {
+        $invalid_int = new FiscalDocuments(00000000000000);
+
+        $this->assertFalse($invalid_int->isValid());
+        $this->assertTrue($invalid_int->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberCNPJFormatted()
+    {
+        $invalid_formatted = new FiscalDocuments('00.000.000/0000-00');
+
+        $this->assertFalse($invalid_formatted->isValid());
+        $this->assertTrue($invalid_formatted->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberCPFString()
+    {
+        $invalid_string = new FiscalDocuments('00000000000');
+
+        $this->assertFalse($invalid_string->isValid());
+        $this->assertTrue($invalid_string->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberCPFInteger()
+    {
+        $invalid_int = new FiscalDocuments(00000000000);
+
+        $this->assertFalse($invalid_int->isValid());
+        $this->assertTrue($invalid_int->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberCPFFormatted()
+    {
+        $invalid_formatted = new FiscalDocuments('000.000.000-00');
+
+        $this->assertFalse($invalid_formatted->isValid());
+        $this->assertTrue($invalid_formatted->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberNIFString()
+    {
+        $invalid_string = new FiscalDocuments('000000000');
+
+        $this->assertFalse($invalid_string->isValid());
+        $this->assertTrue($invalid_string->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberNIFInteger()
+    {
+        $invalid_int = new FiscalDocuments(000000000);
+
+        $this->assertFalse($invalid_int->isValid());
+        $this->assertTrue($invalid_int->isInvalid());
+    }
+
+    public function testShouldReturnFalseWhenIsAnOnlyNumberNIFFormatted()
+    {
+        $invalid_formatted = new FiscalDocuments('000.000.000');
+
+        $this->assertFalse($invalid_formatted->isValid());
+        $this->assertTrue($invalid_formatted->isInvalid());
+    }
 }
