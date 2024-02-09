@@ -301,4 +301,25 @@ class FiscalDocumentsTest extends TestCase
         $this->assertFalse($null_formatted->isValid());
         $this->assertTrue($null_formatted->isInvalid());
     }
+
+    public function testShouldReturnFalseWhenIsAnInvalidString()
+    {
+        $invalid_string = new FiscalDocuments('');
+
+        $this->assertFalse($invalid_string->getType());
+    }
+
+    public function testShouldReturnFalseWhenIsAnInvalidInteger()
+    {
+        $invalid_int = new FiscalDocuments(0);
+
+        $this->assertFalse($invalid_int->getType());
+    }
+
+    public function testShouldReturnFalseWhenIsAnInvalidFormatted()
+    {
+        $invalid_formatted = new FiscalDocuments('0');
+
+        $this->assertFalse($invalid_formatted->getType());
+    }
 }
