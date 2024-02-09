@@ -9,6 +9,9 @@ class FiscalDocuments
     public const DOC_TYPE_NIF_POR = 'NIF';
     public const DOC_TYPE_CPF = 'CPF';
     public const DOC_TYPE_CNPJ = 'CNPJ';
+    public const SIZE_NIF = 9;
+    public const SIZE_CPF = 11;
+    public const SIZE_CNPJ = 14;
 
     public function __construct($number)
     {
@@ -31,17 +34,15 @@ class FiscalDocuments
 
     public function isValid()
     {
-        $type = $this->getType();
-        if (!$type)
-            return false;
-
-        switch ($type) {
-            case self::DOC_TYPE_NIF_POR:
+        switch (strlen($this->doc_number)) {
+            case self::SIZE_NIF:
                 return $this->validateNIF();
-            case self::DOC_TYPE_CPF:
+            case self::SIZE_CPF:
                 return $this->validateCPF();
-            case self::DOC_TYPE_CNPJ:
+            case self::SIZE_CNPJ:
                 return $this->validateCNPJ();
+            default:
+                return false;
         }
     }
 
