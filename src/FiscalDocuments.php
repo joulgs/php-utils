@@ -20,15 +20,16 @@ class FiscalDocuments
 
     public function getType()
     {
+        if (self::isInvalid())
+            return false;
+
         switch (strlen($this->doc_number)) {
-            case 9:
+            case self::SIZE_NIF:
                 return self::DOC_TYPE_NIF_POR;
-            case 11:
+            case self::SIZE_CPF:
                 return self::DOC_TYPE_CPF;
-            case 14:
+            case self::SIZE_CNPJ:
                 return self::DOC_TYPE_CNPJ;
-            default:
-                return false;
         }
     }
 

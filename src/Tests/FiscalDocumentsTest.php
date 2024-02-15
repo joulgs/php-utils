@@ -63,14 +63,6 @@ class FiscalDocumentsTest extends TestCase
         $this->assertFalse($cnpj_string->isInvalid());
     }
 
-    // public function testShouldBeValidWhenIsAValidIntegerCNPJ()
-    // {
-    //     $cnpj = intval('00000000000191');
-    //     $cnpj_int = new FiscalDocuments($cnpj);
-
-    //     $this->assertTrue($cnpj_int->isValid());
-    // }
-
     public function testShouldBeValidWhenIsAValidFormattedCNPJ()
     {
         $cnpj_formatted = new FiscalDocuments('00.000.000/0001-91');
@@ -86,13 +78,6 @@ class FiscalDocumentsTest extends TestCase
         $this->assertFalse($cnpj_string->isValid());
         $this->assertTrue($cnpj_string->isInvalid());
     }
-
-    // public function testShouldBeInvalidWhenIsAnInvalidIntegerCNPJ()
-    // {
-    //     $cnpj_int = new FiscalDocuments(00000000000190);
-
-    //     $this->assertFalse($cnpj_int->isValid());
-    // }
 
     public function testShouldBeInvalidWhenIsAnInvalidFormattedCNPJ()
     {
@@ -223,12 +208,12 @@ class FiscalDocumentsTest extends TestCase
         $this->assertEquals(FiscalDocuments::DOC_TYPE_NIF_POR, $nif_formatted->getType());
     }
 
-    // public function testShouldReturnFalseWhenIsInvalidStringCPF()
-    // {
-    //     $invalid_type = new FiscalDocuments('12345678900');
+    public function testShouldReturnFalseWhenIsInvalidStringCPF()
+    {
+        $invalid_type = new FiscalDocuments('12345678900');
 
-    //     $this->assertFalse($invalid_type->getType());
-    // }
+        $this->assertFalse($invalid_type->getType());
+    }
 
     public function testShouldReturnFalseWhenIsALargeSizeString()
     {

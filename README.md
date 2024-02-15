@@ -33,12 +33,13 @@ Use
 <?php
 use JGS\Utils\FiscalDocuments;
 
-$doc_number = new FiscalDocuments('274763478');
+$doc_number = new FiscalDocuments('12345678901');
 
-echo $doc_number->getType()."\n"; // NIF_PORT
+echo $doc_number->getType()."\n"; // CPF
 
-if($doc_number->isValid())
+if($doc_number->isValid()) {
     echo "Valid Doc Number\n";
+}
 
 ```
 
