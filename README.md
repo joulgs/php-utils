@@ -1,45 +1,68 @@
 # php-utils
-
----
-
 ## Installation
-
-- Using Composer
-
+php-utils is available via composer. To install it, simply run the following command:
 ```bash
 composer require joulgs/php-utils
 ```
-
----
-
-## Class List
+## Available Classes
 
 - [FiscalDocuments](#FiscalDocuments)
+- [Tools](#Tools)
 
-## Using the Functions
 
-### FiscalDocuments
+## FiscalDocuments
 
-Allows you to validate a tax number and obtain its type (CPF, CNPJ, 9 or 10 digit NIS)
+Allows you to validate a tax number and obtain its type (CPF, CNPJ or NIF).
 
-#### FiscalDocuments Functions
-
-- getType 
-- isValid
-- isInvalid
-
-Use
-``` php
+### Methods
+| Method | Description |
+| ------ | ----------- |
+| getType | Returns the type of the tax number (CPF, CNPJ or NIS) |
+| isValid | Returns true if the tax number is valid |
+| isInvalid | Returns true if the tax number is invalid |
+### Example
+```php
 <?php
 use JGS\Utils\FiscalDocuments;
 
 $doc_number = new FiscalDocuments('12345678901');
 
-echo $doc_number->getType()."\n"; // CPF
+echo $doc_number->getType(); // CPF
 
 if($doc_number->isValid()) {
-    echo "Valid Doc Number\n";
+    echo "Valid Doc Number";
 }
 
+if($doc_number->isInvalid()) {
+    echo "Invalid Doc Number";
+}
 ```
 
+## Tools
+A set of tools to help you with your daily tasks.
+
+### Methods
+| Method | Description |
+| ------ | ----------- |
+| formatPhone | Formats a phone number |
+
+*Other methods will be added soon.
+
+### Example
+```php
+<?php
+
+use JGS\Utils\Tools;
+
+$phone = Tools::formatPhone('1234567890');
+echo $phone; // (12) 3456-7890
+
+$phone = Tools::formatPhone('12345678901');
+echo $phone; // (12) 34567-8901
+
+$phone = Tools::formatPhone('551234567890');
+echo $phone; // +55 (12) 3456-7890
+
+$phone = Tools::formatPhone('5512345678901');
+echo $phone; // +55 (12) 34567-8901
+```
