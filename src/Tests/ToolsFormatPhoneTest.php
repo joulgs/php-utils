@@ -102,4 +102,23 @@ class ToolsFormatPhoneTest extends TestCase
         $formatted_number = Tools::formatPhone($number);
         $this->assertEquals('+55 (11) 12345-6789', $formatted_number);
     }
+
+    public function testShouldReturnTheOriginalNumberIfItIsNotValid()
+    {
+        $number = '123';
+        $formatted_number = Tools::formatPhone($number);
+        $this->assertEquals('123', $formatted_number);
+
+        $number = '123456789012345';
+        $formatted_number = Tools::formatPhone($number);
+        $this->assertEquals('123456789012345', $formatted_number);
+
+        $number = 12345;
+        $formatted_number = Tools::formatPhone($number);
+        $this->assertEquals(12345, $formatted_number);
+
+        $number = '12345671223|831390123456';
+        $formatted_number = Tools::formatPhone($number);
+        $this->assertEquals('12345671223|831390123456', $formatted_number);
+    }
 }
