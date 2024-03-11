@@ -28,4 +28,23 @@ class Tools
 
         return $original_number;
     }
+
+    public static function mask($value, $mask)
+    {
+        $value = preg_replace('/\D/', '', trim($value));
+        $value = str_split($value);
+        $mask = str_split($mask);
+        $masked_value = '';
+
+        foreach ($mask as $key => $char) {
+            if ($char === '#') {
+                $masked_value .= $value[0] ?? '';
+                array_shift($value);
+            } else {
+                $masked_value .= $char;
+            }
+        }
+
+        return $masked_value;
+    }
 }
