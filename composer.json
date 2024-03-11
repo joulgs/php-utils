@@ -1,39 +1,43 @@
 {
-    "name":"joulgs/php-utils",
-    "description":"PHP validation and formatting tools",
-    "type":"library",
-    "license": "MIT",
-    "keywords": [
-        "php",
-        "validation",
-        "formatting",
-        "CPF",
-        "CNPJ",
-        "NIF"
-    ],
-    "homepage":"https://github.com/joulgs/php-utils",
-    "repository":"https://github.com/joulgs/php-utils",
-    "bugs":"https://github.com/joulgs/php-utils/issues",
-    "version":"1.1.1",
-    "authors": [
-        {
-            "name": "Jonathas Soares",
-            "email": "joul.gs@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "JGS\\Utils\\": "src/"
-        }
-    },
-    "require": {
-        "php": ">=7.1"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^10.5"
-    },
-    "scripts": {
-        "test": "phpunit",
-        "coverage": "phpunit --coverage-html ./src/Tests/Coverage"
+  "name": "joulgs/php-utils",
+  "description": "PHP validation and formatting tools",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "validation",
+    "formatting",
+    "utilities",
+    "tools",
+    "mask",
+    "phone",
+    "CPF",
+    "CNPJ",
+    "NIF"
+  ],
+  "homepage": "https://github.com/joulgs/php-utils",
+  "repository": "https://github.com/joulgs/php-utils",
+  "bugs": "https://github.com/joulgs/php-utils/issues",
+  "version": "1.2.0",
+  "authors": [
+    {
+      "name": "Jonathas Soares",
+      "email": "joul.gs@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "JGS\\Utils\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.5"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "coverage": "phpunit --coverage-html ./src/Tests/Coverage"
+  }
 }
