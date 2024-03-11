@@ -387,4 +387,46 @@ class FiscalDocumentsTest extends TestCase
         $this->assertFalse($invalid_string->isValid());
         $this->assertTrue($invalid_string->isInvalid());
     }
+
+    public function testShouldReturnMaskedCPF()
+    {
+        $cpf = new FiscalDocuments('12345678909');
+
+        $this->assertEquals('123.456.789-09', $cpf->getMasked());
+    }
+
+    public function testShouldReturnMaskedCNPJ()
+    {
+        $cnpj = new FiscalDocuments('00000000000191');
+
+        $this->assertEquals('00.000.000/0001-91', $cnpj->getMasked());
+    }
+
+    public function testShouldReturnMaskedNIF()
+    {
+        $nif = new FiscalDocuments('123456789');
+
+        $this->assertEquals('123.456.789', $nif->getMasked());
+    }
+
+    public function testShouldReturnFalseWhenIsInvalidMasked()
+    {
+        $invalid = new FiscalDocuments('1234567890');
+
+        $this->assertFalse($invalid->getMasked());
+    }
+
+    public function testShouldReturnFalseWhenIsInvalidMaskedFormatted()
+    {
+        $invalid = new FiscalDocuments('123.456.789-0');
+
+        $this->assertFalse($invalid->getMasked());
+    }
+
+    public function testShouldReturnFalseWhenIsInvalidMaskedCNPJ()
+    {
+        $invalid = new FiscalDocuments('00000000000190');
+
+        $this->assertFalse($invalid->getMasked());
+    }
 }

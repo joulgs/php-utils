@@ -114,4 +114,19 @@ class FiscalDocuments
 
         return true;
     }
+
+    public function getMasked()
+    {
+        if (self::isInvalid())
+            return false;
+
+        switch (strlen($this->doc_number)) {
+            case self::SIZE_NIF:
+                return Tools::mask($this->doc_number, '###.###.###');
+            case self::SIZE_CPF:
+                return Tools::mask($this->doc_number, '###.###.###-##');
+            case self::SIZE_CNPJ:
+                return Tools::mask($this->doc_number, '##.###.###/####-##');
+        }
+    }
 }
